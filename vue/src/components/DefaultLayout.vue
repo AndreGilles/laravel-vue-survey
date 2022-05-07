@@ -83,26 +83,36 @@
       </DisclosurePanel>
     </Disclosure>
 
-    <router-view></router-view>
+    <header class="bg-white shadow">
+      <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <h1 class="text-3xl font-bold text-gray-900">Dashboard</h1>
+      </div>
+    </header>
+    <main>
+      <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <!-- Replace with your content -->
+        <div class="px-4 py-6 sm:px-0">
+          <div class="border-4 border-dashed border-gray-200 rounded-lg h-96" />
+        </div>
+        <!-- /End replace -->
+      </div>
+    </main>
   </div>
 </template>
 
 <script setup>
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/vue/outline'
+import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue';
+import { BellIcon, MenuIcon, XIcon } from '@heroicons/vue/outline';
+import {useStore} from 'vuex';
+import {computed} from 'vue';
 
-const user = {
-  name: 'Tom Cook',
-  email: 'tom@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-}
+const store = useStore();
+
+const user = computed(()=>store.state.user.data);
+
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
-  { name: 'Reports', href: '#', current: false },
+  { name: 'Dashboard', to:{name:'Dashboard'}},
+  { name: 'Surveys', to:{name:'Surveys'}},
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
